@@ -1,0 +1,14 @@
+import { Global, Injectable, Module } from "@nestjs/common";
+import { NotesService } from "./notes.service";
+import { NotesController } from "./notes.controller";
+
+
+@Global()
+
+@Module({
+    providers:[NotesService],
+    exports:[NotesService],
+    controllers:[NotesController]
+})
+
+export class  NotesModule{}
