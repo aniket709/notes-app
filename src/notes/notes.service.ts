@@ -1,7 +1,7 @@
-import { Injectable, UseGuards } from "@nestjs/common";
-import { PrismaService } from "src/database/prisma.service";
-import { NotesDto, deleteNotes, updateNotes } from "./dto/notes.dto";
+import { Injectable } from "@nestjs/common";
 import { Prisma } from '@prisma/client';
+import { PrismaService } from "src/database/prisma.service";
+import { NotesDto, updateNotes } from "./dto/notes.dto";
 
 
 @Injectable()
@@ -91,6 +91,12 @@ export class NotesService{
           }
         });
       }
+
+       /*-------------------------------------------------------------------------------- */
+
+     
+
+
 
 
 

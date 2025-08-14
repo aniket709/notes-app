@@ -3,7 +3,6 @@ import { NotesService } from "./notes.service";
 import { NotesController } from "./notes.controller";
 
 
-@Global()
 
 @Module({
     providers:[NotesService],
