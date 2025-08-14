@@ -1,8 +1,10 @@
-import { Controller,Post, UploadedFile, UseInterceptors,UploadedFiles, InternalServerErrorException, Get } from "@nestjs/common";
+import { Controller,Post,Req, UploadedFile, UseInterceptors,UploadedFiles, InternalServerErrorException, Get, UseGuards } from "@nestjs/common";
 import { FileService } from "./file.service";
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from "multer";
 import { extname } from 'path';
+import { AuthGuard } from "@nestjs/passport";
+import { PrismaService } from "src/database/prisma.service";
 
 
 
@@ -11,10 +13,12 @@ import { extname } from 'path';
 
 export  class FileController{
 
-    constructor(private fileService:FileService){}
+    constructor(private fileService:FileService,
+        private prisma :PrismaService){}
 
 
     @Post("/singleupload")
+    @UseGuards(AuthGuard('jwt'))
 
     @UseInterceptors(FileInterceptor('file', {
         storage: diskStorage({
@@ -24,15 +28,19 @@ export  class FileController{
           }
         })
       }))
-      uploadFile(@UploadedFile() file:Express.Multer.File){
+     async uploadFile(@UploadedFile() file:Express.Multer.File,@Req() req){
+
+        const userId = req.user?.id; 
         if (!file ) {
             throw new InternalServerErrorException('No files uploaded');
           }
-        return this.fileService.uploadfile(file)
+          
+        return this.fileService.uploadfile(file,userId)
 
       }
 
       @Post('/multiple')
+      @UseGuards(AuthGuard('jwt'))
       @UseInterceptors(FilesInterceptor('files', 5, {
         storage: diskStorage({
           destination: './uploads',

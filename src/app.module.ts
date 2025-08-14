@@ -6,13 +6,14 @@ import { UserModule } from './auth/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { NotesModule } from './notes/notes.module';
 import { FileModule } from './fileupload/file.module';
+import { UtilModule } from './utils/utils.module';
 
 
 @Module({
   imports: [ConfigModule.forRoot({
     isGlobal:true
   }),
-    PrismaModule,UserModule,NotesModule,FileModule],
+    PrismaModule,UserModule,NotesModule,FileModule,UtilModule],
   controllers: [AppController],
   providers: [AppService],
 })
