@@ -23,6 +23,7 @@ datasource db {
   createdAt  DateTime? @default(now())
   updatedAt  DateTime? @updatedAt
   metaData  MetaData[] 
+  isOtpVerified Boolean @default(false)
 }
 
 model Notes {
@@ -46,4 +47,13 @@ model MetaData{
   userId  Int
    user    User   @relation(fields: [userId], references: [id])
 
+}
+
+model Otp{
+
+  id Int   @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email  String 
+  expiresAt DateTime
+  code Int @unique()
 }

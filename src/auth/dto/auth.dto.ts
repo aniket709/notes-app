@@ -47,3 +47,29 @@ export class signupDto{
     @IsNotEmpty()
     username:string
  }
+
+  export class ForgetPasswordDto{
+
+   @IsEmail()
+   @IsNotEmpty()
+   email:string
+  }
+
+  export class otpDto{
+
+@IsNotEmpty()
+    code:number
+  }
+
+  export class NewPasswordDto{
+
+    @IsString()
+    @IsNotEmpty()
+    @Length(8,60)
+    newPassword:string
+
+    
+    @IsNotEmpty()
+    @IsEmail()
+     email:string
+  }
