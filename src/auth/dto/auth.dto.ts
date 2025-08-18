@@ -1,5 +1,5 @@
 
-import { IsString, IsEmail, IsNotEmpty, Length, isNotEmpty } from 'class-validator';
+import { IsString, IsEmail, IsNotEmpty, Length} from 'class-validator';
 
 export class signupDto{
 

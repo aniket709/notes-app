@@ -1,4 +1,4 @@
-import { Controller, Post,Body, Get, UseGuards} from "@nestjs/common";
+import { Controller, Post,Body, Get, UseGuards, Req} from "@nestjs/common";
 import { ForgetPasswordDto, LoginDto, NewPasswordDto, getUser, signupDto } from "./dto/auth.dto";
 import { UserService } from "./user.service";
 import { AuthGuard } from "@nestjs/passport";
@@ -26,7 +26,8 @@ async registerUser(@Body ()  signupDto) :Promise <object | null>{
 
 @Post("/login")
 
-async loginUser(@Body() LoginDto) :Promise <object | null>{
+async loginUser(@Body() LoginDto, @Req()req) :Promise <object | null>{
+
     return this.userService.login(LoginDto)
 }
 

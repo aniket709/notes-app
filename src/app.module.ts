@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { PrismaModule } from './database/prisma.module';
 import { UserModule } from './auth/user.module';
 import { ConfigModule } from '@nestjs/config';
@@ -14,7 +12,7 @@ import { UtilModule } from './utils/utils.module';
     isGlobal:true
   }),
     PrismaModule,UserModule,NotesModule,FileModule,UtilModule],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
